@@ -5,6 +5,7 @@ import Modal from "@material-ui/core/Modal";
 import Post from "./Post";
 import { auth, db } from "./firebase";
 import { Button, Input } from "@material-ui/core";
+import ImageUpload from "./ImageUpload";
 
 function getModalStyle() {
   const top = 50;
@@ -61,15 +62,17 @@ function App() {
   }, [user, username]);
 
   useEffect(() => {
-    db.collection("posts").onSnapshot((snapshot) => {
-      console.log("onSnapShot");
-      setPosts(
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          post: doc.data(),
-        }))
-      );
-    });
+    db.collection("posts")
+      // .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        console.log("onSnapShot");
+        setPosts(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            post: doc.data(),
+          }))
+        );
+      });
   }, []);
 
   const handleSignUp = (event) => {
@@ -99,10 +102,11 @@ function App() {
 
   return (
     <div className="app">
-      {/* I want to have... */}
-      {/* Caption Input */}
-      {/* File picker */}
-      {/* Post Button */}
+      {user?.displayName ? (
+        <ImageUpload username={user.displayName} />
+      ) : (
+        <h3>Sorry you need to login to upload</h3>
+      )}
 
       <Modal open={open} onClose={() => setOpen(false)}>
         <div style={modalStyle} className={classes.paper}>
