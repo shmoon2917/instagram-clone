@@ -4,7 +4,7 @@
 
 .app {
   background-color: #fafafa;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .app__header {
@@ -19,7 +19,7 @@
   justify-content: space-between;
 }
 
-.app__headerImage {
+.app__signUpImage {
   width: 90px;
 }
 
@@ -27,6 +27,7 @@
   padding: 20px;
   display: flex;
   justify-content: center;
+  padding-top: 80px;
 }
 
 .app__postsRight {

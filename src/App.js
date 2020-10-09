@@ -7,6 +7,7 @@ import { auth, db } from "./firebase";
 import { Button, Input } from "@material-ui/core";
 import ImageUpload from "./ImageUpload";
 import InstagramEmbed from 'react-instagram-embed';
+import Nav from "./Nav";
 
 function getModalStyle() {
   const top = 50;
@@ -34,7 +35,7 @@ function App() {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const [posts, setPosts] = useState([]);
-  const [open, setOpen] = useState(false);
+  const [openSignUp, setOpenSignUp] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false);
 
   const [username, setUsername] = useState("");
@@ -88,7 +89,7 @@ function App() {
       })
       .catch((error) => alert(error.message));
 
-    setOpen(false);
+    setOpenSignUp(false);
   };
 
   const handleSignIn = (event) => {
@@ -103,7 +104,7 @@ function App() {
 
   return (
     <div className="app">
-      <Modal open={open} onClose={() => setOpen(false)}>
+      <Modal open={openSignUp} onClose={() => setOpenSignUp(false)}>
         <div style={modalStyle} className={classes.paper}>
           <center>
             <form className="app__signup">
@@ -142,7 +143,7 @@ function App() {
           <center>
             <form className="app__signup">
               <img
-                className="app__headerImage"
+                className="app__signUpImage"
                 alt=""
                 src="https://fontmeme.com/images/instagram-new-logo.png"
               />
@@ -166,21 +167,7 @@ function App() {
         </div>
       </Modal>
 
-      <div className="app__header">
-        <img
-          className="app__headerImage"
-          alt=""
-          src="https://fontmeme.com/images/instagram-new-logo.png"
-        />
-        {user ? (
-          <Button onClick={() => auth.signOut()}>LogOut</Button>
-        ) : (
-          <div className="app__loginContainer">
-            <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
-            <Button onClick={() => setOpen(true)}>Sign Up</Button>
-          </div>
-        )}
-      </div>
+      <Nav user={user} setOpenSignUp={setOpenSignUp} setOpenSignIn={setOpenSignIn} />
 
       <div className="app__posts">
         <div className="app__postsLeft">
