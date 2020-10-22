@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import "./App.css";
-import { makeStyles } from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Post from "./Post";
-import { auth, db } from "./firebase";
-import { Button, Input } from "@material-ui/core";
+import {auth, db} from "./firebase";
+import {Button, Input} from "@material-ui/core";
 import ImageUpload from "./ImageUpload";
-import InstagramEmbed from 'react-instagram-embed';
+import InstagramEmbed from "react-instagram-embed";
 
 function getModalStyle() {
   const top = 50;
@@ -185,7 +185,7 @@ function App() {
       <div className="app__posts">
         <div className="app__postsLeft">
           {posts &&
-            posts.map(({ id, post }, index) => (
+            posts.map(({id, post}, index) => (
               <Post
                 key={id}
                 postId={id}
@@ -194,15 +194,15 @@ function App() {
                 imageUrl={post.imageUrl}
                 user={user}
               />
-          ))}
+            ))}
         </div>
         <div className="app__postsRight">
           <InstagramEmbed
-            url='https://instagram.com/p/B_uf9dmAGPw/ '
+            url="https://www.instagram.com/p/CA79TnnD7K4/"
             maxWidth={320}
             hideCaption={false}
-            containerTagName='div'
-            protocol=''
+            containerTagName="div"
+            protocol=""
             injectScript
             onLoading={() => {}}
             onSuccess={() => {}}
@@ -211,8 +211,6 @@ function App() {
           />
         </div>
       </div>
-
-
 
       {user?.displayName ? (
         <ImageUpload username={user.displayName} />
