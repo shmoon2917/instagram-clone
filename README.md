@@ -2,8 +2,9 @@
 
 Firebase 학습용 인스타그램 클론 앱
 
-- Authorization 구현
-- Firebase Store(Realtime DB) 적용
+- Firebase Authorization 구현
+- FireStore(Realtime DB) 에 데이터 저장
+- Firebase Storage 에 이미지 저장
 
 ## Installation
 
